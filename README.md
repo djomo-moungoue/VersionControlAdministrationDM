@@ -133,30 +133,124 @@ Installs the selected package, either found by searching a configured source or 
 winget install --id Git.Git -exact --source winget
 ~~~
 
-Set the default global email and the name of the git user
+## Git Workflow
+
+![Git Workflow](./Images/GitWorkflow.jpg)
+
+### (1) Core Commands
+
+|Start a working area|
+|---|
+
 ~~~ps1
-git config --global user.email "GitUserEmail"
-git config --global user.name "GitUserName"
+# Official documentation
+git help tutorial
 ~~~
 
-If you see the error massage after pushing your work to GitHub, don't worry 
-~~~ps1
-+ git push
-+ ~~~~~~~~
-    + CategoryInfo          : NotSpecified: (To https://gith...l_scripting.git:String) [], RemoteException
-    + FullyQualifiedErrorId : NativeCommandError
-~~~
-See a discussion about this essue [here](https://github.com/dahlbyk/posh-git/issues/109)
+#### Git Help
 
-If Git find a directory unsafe because the current user is not the owner, run this command if you known who owns that directory
+" U+1f3ab "
+
+"U+1f3ab"
+
+ U+1f3ab 
+
+U+1f3ab 
+
+**git help**: 🎫 Retrieve all available git commands.
 ~~~ps1
-git config --global --add safe.directory ${env:USERPROFILE}\PowerShellScriptingDM
+git help
 ~~~
+
 
 To open the documentation page of a git command online, type the following command:
-~~~sh
+~~~ps1
 git CommandName --help
 ~~~
+
+#### Git Init
+
+**git init** : 🚀 Initialize a new repository by creating an empty Git repository or reinitialize an existing one
+~~~ps1
+git init
+~~~
+
+#### Git Clone
+
+**git clone** : 📥 Clone a repository into a new directory
+~~~ps1
+# clone a github reporsitory
+<#
+
+#>
+git clone htttps://github.com/user-name/RepositoryName.git
+~~~
+
+|Work on the current change|
+|---|
+~~~ps1
+# Open the official online Manual Page
+git help everyday
+~~~
+
+**git add** : ➕ Add changes to the staging area
+
+**git mv** : 🔄 Move or rename a file, a directory, or a symlink
+
+**restore** : ⏪ Restore working tree files
+
+**rm**: ➖ Remove files from the working tree and from the index
+
+|grow, mark and tweak your common history|
+|---|
+
+**git branch** : 🔄 List, create, or delete branches
+
+**git checkout** : 🔄 Switch branches or restore working tree files
+
+**git commit** : ✍️ Commit changes to the repository
+
+**git reset** : ⏪ Reset changes in the working tree
+
+**git tag** : 🏷️ Add tags to commits
+
+|Examine the history and state|
+|---|
+~~~ps1
+# Open the official online Manual Page
+git help revisions
+~~~
+
+**git bisect** : 🔄 Use binary search to find the commit that introduced a bug
+
+**git diff** : 🔄 View the difference between changes
+
+**git grep** : 🔄  Print lines matching a pattern
+
+**git log** : 📜 View commit history
+
+**git show** : 🎫 Show information about a commit
+
+**git status** : 📊 Check status of your changes
+
+|Collaborate|
+|---|
+~~~ps1
+# Open the official online Manual Page
+git help workflows
+~~~
+
+#### Git Fetch
+
+**git fetch** : 🔄 Download objects and refs from another repository
+
+#### Git Pull
+
+**git pull** : 🔄 Fetch changes from a remote repository
+
+#### Git Push
+
+**git push** : 🚀 Push changes to a remote repository
 
 Push a local branch that is not yet referenced in .git/config file
 ~~~sh
@@ -169,56 +263,6 @@ The command above will add the following entry in .git/config file
 	merge = refs/heads/BranchName
 ~~~
 
-Set the correct commiter after mistakenly commiting with the wrong one
-~~~sh
-# Edit the name and email of the global commiter on the local machine
-git config --global --edit
-
-# reset the name and email of the previous commit (not yet pushed) to the current correct global commiter
-git commit --amend --reset-author
-
-# The Vim editor command to enter the edit mode is i
-# The Vim editor command to save your changes is esc then :wq
-# Meaning: escape (esc) the interactive mode (i) the save the changes (w) and quit the vim editor (q).
-~~~
-
-Set the name and the email of the global commiter on a local computer
-~~~sh
-git config --global user.name "user-name"
-git config --global user.name@domain
-~~~
-
-## Git Workflow
-
-![Git Workflow](./Images/GitWorkflow.jpg)
-
-### (1) Core Commands
-
-**git init** : 🚀 Initialize a new repository
-
-**git clone** : 📥 Clone a repository
-
-**git add** : ➕ Add changes to the staging area
-
-**git commit** : ✍️ Commit changes to the repository
-
-**git status** : 📊 Check status of your changes
-
-**git diff** : 🔄 View the difference between changes
-
-**git checkout** : 🔄 Switch branches or restore working tree files
-
-**git reset** : ⏪ Reset changes in the working tree
-
-**git log** : 📜 View commit history
-
-**git show** : 🎫 Show information about a commit
-
-**git tag** : 🏷️ Add tags to commits
-
-**git push** : 🚀 Push changes to a remote repository
-
-**git pull** : 🔄 Fetch changes from a remote repository
 
 ### (2) Branching
 
@@ -275,6 +319,46 @@ git config --global user.name@domain
 ⚙️ Configure Git settings: `git config`
 
 ⚙️ Configure global Git settings: `git config --global`
+
+
+Set the default global email and the name of the git user
+~~~ps1
+git config --global user.email "GitUserEmail"
+git config --global user.name "GitUserName"
+~~~
+
+If you see the error massage after pushing your work to GitHub, don't worry 
+~~~ps1
++ git push
++ ~~~~~~~~
+    + CategoryInfo          : NotSpecified: (To https://gith...l_scripting.git:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+~~~
+See a discussion about this essue [here](https://github.com/dahlbyk/posh-git/issues/109)
+
+If Git find a directory unsafe because the current user is not the owner, run this command if you known who owns that directory
+~~~ps1
+git config --global --add safe.directory ${env:USERPROFILE}\PowerShellScriptingDM
+~~~
+
+Set the correct commiter after mistakenly commiting with the wrong one
+~~~sh
+# Edit the name and email of the global commiter on the local machine
+git config --global --edit
+
+# reset the name and email of the previous commit (not yet pushed) to the current correct global commiter
+git commit --amend --reset-author
+
+# The Vim editor command to enter the edit mode is i
+# The Vim editor command to save your changes is esc then :wq
+# Meaning: escape (esc) the interactive mode (i) the save the changes (w) and quit the vim editor (q).
+~~~
+
+Set the name and the email of the global commiter on a local computer
+~~~sh
+git config --global user.name "user-name"
+git config --global user.name@domain
+~~~
 
 ⚙️ Remove a Git configuration: `git reset config`
 
