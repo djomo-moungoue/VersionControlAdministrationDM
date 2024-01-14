@@ -1,7 +1,11 @@
 # VersionControlAdministrationDM
 
+![Git Workflow](GitWorkflow)
+
 # Git
-The entire Pro Git book, written by Scott Chacon and Ben Straub and published by Apress, is available [here](https://git-scm.com/book/en/v2)
+The entire Pro Git book, written by Scott Chacon and Ben Straub and published by Apress, is available [here](https://git-scm.com/book/en/v2).
+
+L'intégralité du livre Pro Git, écrit par Scott Chacon et Ben Straub et publié par Apress, est disponible [ici](https://git-scm.com/book/fr/v2).
 
 ## Set-Up Git Version Control in PowerShell command line
 The official Git-setup in PowerShell avaible is [here](https://git-scm.com/book/en/v2/Appendix-A%3A-Git-in-Other-Environments-Git-in-PowerShell)
