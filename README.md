@@ -1,9 +1,10 @@
 # VersionControlAdministrationDM
 
 # Git
+The entire Pro Git book, written by Scott Chacon and Ben Straub and published by Apress, is available [here](https://git-scm.com/book/en/v2)
 
 ## Set-Up Git Version Control in PowerShell command line
-The official Git-setup in PowerShell avaible is [here](https://git-scm.com/book/de/v2/Anhang-A%3A-Git-in-anderen-Umgebungen-Git-in-PowerShell)
+The official Git-setup in PowerShell avaible is [here](https://git-scm.com/book/en/v2/Appendix-A%3A-Git-in-Other-Environments-Git-in-PowerShell)
 
 Retrieve all available Git packages
 ~~~ps1
@@ -85,7 +86,9 @@ Installs the selected package, either found by searching a configured source or 
 -s,--source                          Find package using the specified source.
 #>
 winget install --id Git.Git -exact --source winget
+~~~
 
+~~~ps1
 Install-Module posh-git -Scope CurrentUser -Force
 Install-Module posh-git -Scope CurrentUser -Force
 
