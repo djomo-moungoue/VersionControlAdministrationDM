@@ -6,6 +6,51 @@
 
 The official Git-setup in PowerShell avaible is [here](https://git-scm.com/book/en/v2/Appendix-A%3A-Git-in-Other-Environments-Git-in-PowerShell)
 
+### Enable Git in PowerShell
+
+The legacy command-line terminal on Windows (`cmd.exe`) is ont really capable of a customized Git experience, but if you are using `PowerShell`, you are in luck. This `also works` if you are `running PowerShell Core` on `Linux` or `macOS`. A package called [posh-git](https://github.com/dahlbyk/posh-git) provides powerful tab-completion facilities, as well as an enhanced prompt to help you stay on top of your repository status. 
+
+#### Prerequisites (Windows only)
+
+Before you’re able to run PowerShell scripts on your machine, you need to set your `local ExecutionPolicy` to `RemoteSigned` (basically, anything except `Undefined` and `Restricted`). 
+- If you choose `AllSigned` instead of `RemoteSigned`, also local scripts (your own) need to be digitally signed in order to be executed. With `RemoteSigned`, only scripts having the ZoneIdentifier set to Internet (were downloaded from the web) need to be signed, others not.
+- If you are an `administrator` and want to set it for `all users on that machine`, use `-Scope LocalMachine`. 
+- If you are a `normal user, without administrative rights`, you can use `-Scope CurrentUser` to set it only for you.
+
+To set the value of ExecutionPolicy to RemoteSigned for all users use the next command:
+~~~ps1
+# Administrator
+Set-ExecutionPolicy -Scope LocalMachine -ExecutionPolicy RemoteSigned -Force
+~~~
+
+To set the value of ExecutionPolicy to RemoteSigned for you use the next command:
+~~~ps1
+# Normal user without admin priviledges
+Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned -Force
+~~~
+
+#### PowerShell Gallery
+If you have `at least PowerShell 5 or PowerShell 4` with `PackageManagement installed`, you can use the package manager to install posh-git for you.
+~~~ps1
+Install-Module posh-git -Scope CurrentUser -Force
+Install-Module posh-git -Scope CurrentUser -AllowPrerelease -Force # Newer beta version with PowerShell Core support
+~~~
+
+#### Update PowerShell Prompt
+
+To include Git information in your prompt, the posh-git module needs to be imported. 
+~~~ps1
+Import-Module posh-git
+~~~
+
+To have posh-git imported every time PowerShell starts, execute the Add-PoshGitToProfile command which will add the import statement into your $profile script. This script is executed everytime you open a new PowerShell console. 
+~~~ps1
+Add-PoshGitToProfile -AllHosts
+~~~
+`N.B.`: Keep in mind, that there are multiple $profile scripts. E.g. one for the console and a separate one for the ISE.
+
+### Install Git on your local computer
+
 Retrieve all available Git packages
 ~~~ps1
 winget search --name git
@@ -88,14 +133,8 @@ Installs the selected package, either found by searching a configured source or 
 winget install --id Git.Git -exact --source winget
 ~~~
 
+Set the default global email and the name of the git user
 ~~~ps1
-Install-Module posh-git -Scope CurrentUser -Force
-Install-Module posh-git -Scope CurrentUser -Force
-
-Import-Module posh-git
-Add-PoshGitToProfile -AllHosts
-
-write-host "`nSetting the default global email and the name of the git user..." 
 git config --global user.email "GitUserEmail"
 git config --global user.name "GitUserName"
 ~~~
