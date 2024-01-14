@@ -1,14 +1,55 @@
 # VersionControlAdministrationDM
 
-![Git Workflow](./Images/GitWorkflow.jpg)
-
 # Git
-The entire Pro Git book, written by Scott Chacon and Ben Straub and published by Apress, is available [here](https://git-scm.com/book/en/v2).
-
-L'intégralité du livre Pro Git, écrit par Scott Chacon et Ben Straub et publié par Apress, est disponible [ici](https://git-scm.com/book/fr/v2).
 
 ## Set-Up Git Version Control in PowerShell command line
+
 The official Git-setup in PowerShell avaible is [here](https://git-scm.com/book/en/v2/Appendix-A%3A-Git-in-Other-Environments-Git-in-PowerShell)
+
+### Enable Git in PowerShell
+
+The legacy command-line terminal on Windows (`cmd.exe`) is ont really capable of a customized Git experience, but if you are using `PowerShell`, you are in luck. This `also works` if you are `running PowerShell Core` on `Linux` or `macOS`. A package called [posh-git](https://github.com/dahlbyk/posh-git) provides powerful tab-completion facilities, as well as an enhanced prompt to help you stay on top of your repository status. 
+
+#### Prerequisites (Windows only)
+
+Before you’re able to run PowerShell scripts on your machine, you need to set your `local ExecutionPolicy` to `RemoteSigned` (basically, anything except `Undefined` and `Restricted`). 
+- If you choose `AllSigned` instead of `RemoteSigned`, also local scripts (your own) need to be digitally signed in order to be executed. With `RemoteSigned`, only scripts having the ZoneIdentifier set to Internet (were downloaded from the web) need to be signed, others not.
+- If you are an `administrator` and want to set it for `all users on that machine`, use `-Scope LocalMachine`. 
+- If you are a `normal user, without administrative rights`, you can use `-Scope CurrentUser` to set it only for you.
+
+To set the value of ExecutionPolicy to RemoteSigned for all users use the next command:
+~~~ps1
+# Administrator
+Set-ExecutionPolicy -Scope LocalMachine -ExecutionPolicy RemoteSigned -Force
+~~~
+
+To set the value of ExecutionPolicy to RemoteSigned for you use the next command:
+~~~ps1
+# Normal user without admin priviledges
+Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned -Force
+~~~
+
+#### PowerShell Gallery
+If you have `at least PowerShell 5 or PowerShell 4` with `PackageManagement installed`, you can use the package manager to install posh-git for you.
+~~~ps1
+Install-Module posh-git -Scope CurrentUser -Force
+Install-Module posh-git -Scope CurrentUser -AllowPrerelease -Force # Newer beta version with PowerShell Core support
+~~~
+
+#### Update PowerShell Prompt
+
+To include Git information in your prompt, the posh-git module needs to be imported. 
+~~~ps1
+Import-Module posh-git
+~~~
+
+To have posh-git imported every time PowerShell starts, execute the Add-PoshGitToProfile command which will add the import statement into your $profile script. This script is executed everytime you open a new PowerShell console. 
+~~~ps1
+Add-PoshGitToProfile -AllHosts
+~~~
+`N.B.`: Keep in mind, that there are multiple $profile scripts. E.g. one for the console and a separate one for the ISE.
+
+### Install Git on your local computer
 
 Retrieve all available Git packages
 ~~~ps1
@@ -92,14 +133,188 @@ Installs the selected package, either found by searching a configured source or 
 winget install --id Git.Git -exact --source winget
 ~~~
 
+## Git Workflow
+
+![Git Workflow](./Images/GitWorkflow.jpg)
+
+### (1) Core Commands
+
+|Start a working area|
+|---|
+
 ~~~ps1
-Install-Module posh-git -Scope CurrentUser -Force
-Install-Module posh-git -Scope CurrentUser -Force
+# Official documentation
+git help tutorial
+~~~
 
-Import-Module posh-git
-Add-PoshGitToProfile -AllHosts
+#### Git Help
 
-write-host "`nSetting the default global email and the name of the git user..." 
+**git help**: 🎫 Retrieve all available git commands.
+~~~ps1
+git help
+~~~
+
+
+To open the documentation page of a git command online, type the following command:
+~~~ps1
+git CommandName --help
+~~~
+
+#### Git Init
+
+**git init** : 🚀 Initialize a new repository by creating an empty Git repository or reinitialize an existing one
+~~~ps1
+git init
+~~~
+
+#### Git Clone
+
+**git clone** : 📥 Clone a repository into a new directory
+~~~ps1
+# clone a github reporsitory
+<#
+
+#>
+git clone htttps://github.com/user-name/RepositoryName.git
+~~~
+
+|Work on the current change|
+|---|
+~~~ps1
+# Open the official online Manual Page
+git help everyday
+~~~
+
+**git add** : ➕ Add changes to the staging area
+
+**git mv** : 🔄 Move or rename a file, a directory, or a symlink
+
+**restore** : ⏪ Restore working tree files
+
+**rm**: ➖ Remove files from the working tree and from the index
+
+|grow, mark and tweak your common history|
+|---|
+
+**git branch** : 🔄 List, create, or delete branches
+
+**git checkout** : 🔄 Switch branches or restore working tree files
+
+**git commit** : ✍️ Commit changes to the repository
+
+**git reset** : ⏪ Reset changes in the working tree
+
+**git tag** : 🏷️ Add tags to commits
+
+|Examine the history and state|
+|---|
+~~~ps1
+# Open the official online Manual Page
+git help revisions
+~~~
+
+**git bisect** : 🔄 Use binary search to find the commit that introduced a bug
+
+**git diff** : 🔄 View the difference between changes
+
+**git grep** : 🔄  Print lines matching a pattern
+
+**git log** : 📜 View commit history
+
+**git show** : 🎫 Show information about a commit
+
+**git status** : 📊 Check status of your changes
+
+|Collaborate|
+|---|
+~~~ps1
+# Open the official online Manual Page
+git help workflows
+~~~
+
+#### Git Fetch
+
+**git fetch** : 🔄 Download objects and refs from another repository
+
+#### Git Pull
+
+**git pull** : 🔄 Fetch changes from a remote repository
+
+#### Git Push
+
+**git push** : 🚀 Push changes to a remote repository
+
+Push a local branch that is not yet referenced in .git/config file
+~~~sh
+git push --set-upstream remote BranchName
+~~~
+The command above will add the following entry in .git/config file
+~~~
+[branch "BranchName"]
+	remote = origin
+	merge = refs/heads/BranchName
+~~~
+
+
+### (2) Branching
+
+🌿 Manage branches: `git branch`
+
+🏗️ Create and switch to a new branch: `git checkout -b`
+
+🔄 Merge changes from one branch to another: `git merge`
+
+🔄 Reapply changes on top of another branch: `git rebase`
+
+🔄 Set up a tracking branch: `git branch --set-upstream-to`
+
+🔄 Unset the upstream configuration: `git branch --unset-upstream`
+
+🍒 Pick specific commits to apply: `git cherry-pick`
+
+### (3) Merging
+
+🔄 Merge changes from one branch to another: `git merge`
+
+🔄 Reapply changes on top of another branch: `git rebase`
+
+### (4) Stashing
+
+📦 Temporarily save changes: `git stash`
+
+📦 Apply stashed changes and remove them: `git stash pop`
+
+📦 List all stashes: `git stash list`
+
+📦 Apply stashed changes: `git stash apply`
+
+📦 Discard a stash: `git stash drop`
+
+### (5) Remotes
+
+🔄 Manage remote repositories: `git remote`
+
+➕ Add a remote repository: `git remote add`
+
+➖ Remove a remote repository: `git remote remove`
+
+🔄 Fetch changes from a remote repository: `git fetch`
+
+🔄 Pull changes from a remote repository: `git pull`
+
+🚀 Push changes to a remote repository: `git push`
+
+🔄 Clone a repository with all branches: `git clone --mirror`
+
+### (6) Configuration
+
+⚙️ Configure Git settings: `git config`
+
+⚙️ Configure global Git settings: `git config --global`
+
+
+Set the default global email and the name of the git user
+~~~ps1
 git config --global user.email "GitUserEmail"
 git config --global user.name "GitUserName"
 ~~~
@@ -116,22 +331,6 @@ See a discussion about this essue [here](https://github.com/dahlbyk/posh-git/iss
 If Git find a directory unsafe because the current user is not the owner, run this command if you known who owns that directory
 ~~~ps1
 git config --global --add safe.directory ${env:USERPROFILE}\PowerShellScriptingDM
-~~~
-
-To open the documentation page of a git command online, type the following command:
-~~~sh
-git CommandName --help
-~~~
-
-Push a local branch that is not yet referenced in .git/config file
-~~~sh
-git push --set-upstream remote BranchName
-~~~
-The command above will add the following entry in .git/config file
-~~~
-[branch "BranchName"]
-	remote = origin
-	merge = refs/heads/BranchName
 ~~~
 
 Set the correct commiter after mistakenly commiting with the wrong one
@@ -152,6 +351,12 @@ Set the name and the email of the global commiter on a local computer
 git config --global user.name "user-name"
 git config --global user.name@domain
 ~~~
+
+⚙️ Remove a Git configuration: `git reset config`
+
+The entire Pro Git book, written by Scott Chacon and Ben Straub and published by Apress, is available [here](https://git-scm.com/book/en/v2).
+
+L'intégralité du livre Pro Git, écrit par Scott Chacon et Ben Straub et publié par Apress, est disponible [ici](https://git-scm.com/book/fr/v2).
 
 # GitHub
 
