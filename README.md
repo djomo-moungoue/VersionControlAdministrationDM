@@ -149,14 +149,6 @@ git help tutorial
 
 #### Git Help
 
-" U+1f3ab "
-
-"U+1f3ab"
-
- U+1f3ab 
-
-U+1f3ab 
-
 **git help**: 🎫 Retrieve all available git commands.
 ~~~ps1
 git help
