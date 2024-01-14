@@ -1,6 +1,6 @@
 # VersionControlAdministrationDM
 
-![Git Workflow](GitWorkflow)
+![Git Workflow](./Images/GitWorkflow.jpg)
 
 # Git
 The entire Pro Git book, written by Scott Chacon and Ben Straub and published by Apress, is available [here](https://git-scm.com/book/en/v2).
