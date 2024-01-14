@@ -1,13 +1,9 @@
 # VersionControlAdministrationDM
 
-![Git Workflow](./Images/GitWorkflow.jpg)
-
 # Git
-The entire Pro Git book, written by Scott Chacon and Ben Straub and published by Apress, is available [here](https://git-scm.com/book/en/v2).
-
-L'intégralité du livre Pro Git, écrit par Scott Chacon et Ben Straub et publié par Apress, est disponible [ici](https://git-scm.com/book/fr/v2).
 
 ## Set-Up Git Version Control in PowerShell command line
+
 The official Git-setup in PowerShell avaible is [here](https://git-scm.com/book/en/v2/Appendix-A%3A-Git-in-Other-Environments-Git-in-PowerShell)
 
 Retrieve all available Git packages
@@ -152,6 +148,100 @@ Set the name and the email of the global commiter on a local computer
 git config --global user.name "user-name"
 git config --global user.name@domain
 ~~~
+
+## Git Workflow
+
+![Git Workflow](./Images/GitWorkflow.jpg)
+
+### (1) Core Commands
+
+**git init** : 🚀 Initialize a new repository
+
+**git clone** : 📥 Clone a repository
+
+**git add** : ➕ Add changes to the staging area
+
+**git commit** : ✍️ Commit changes to the repository
+
+**git status** : 📊 Check status of your changes
+
+**git diff** : 🔄 View the difference between changes
+
+**git checkout** : 🔄 Switch branches or restore working tree files
+
+**git reset** : ⏪ Reset changes in the working tree
+
+**git log** : 📜 View commit history
+
+**git show** : 🎫 Show information about a commit
+
+**git tag** : 🏷️ Add tags to commits
+
+**git push** : 🚀 Push changes to a remote repository
+
+**git pull** : 🔄 Fetch changes from a remote repository
+
+### (2) Branching
+
+🌿 Manage branches: `git branch`
+
+🏗️ Create and switch to a new branch: `git checkout -b`
+
+🔄 Merge changes from one branch to another: `git merge`
+
+🔄 Reapply changes on top of another branch: `git rebase`
+
+🔄 Set up a tracking branch: `git branch --set-upstream-to`
+
+🔄 Unset the upstream configuration: `git branch --unset-upstream`
+
+🍒 Pick specific commits to apply: `git cherry-pick`
+
+### (3) Merging
+
+🔄 Merge changes from one branch to another: `git merge`
+
+🔄 Reapply changes on top of another branch: `git rebase`
+
+### (4) Stashing
+
+📦 Temporarily save changes: `git stash`
+
+📦 Apply stashed changes and remove them: `git stash pop`
+
+📦 List all stashes: `git stash list`
+
+📦 Apply stashed changes: `git stash apply`
+
+📦 Discard a stash: `git stash drop`
+
+### (5) Remotes
+
+🔄 Manage remote repositories: `git remote`
+
+➕ Add a remote repository: `git remote add`
+
+➖ Remove a remote repository: `git remote remove`
+
+🔄 Fetch changes from a remote repository: `git fetch`
+
+🔄 Pull changes from a remote repository: `git pull`
+
+🚀 Push changes to a remote repository: `git push`
+
+🔄 Clone a repository with all branches: `git clone --mirror`
+
+### (6) Configuration
+
+⚙️ Configure Git settings: `git config`
+
+⚙️ Configure global Git settings: `git config --global`
+
+⚙️ Remove a Git configuration: `git reset config`
+
+The entire Pro Git book, written by Scott Chacon and Ben Straub and published by Apress, is available [here](https://git-scm.com/book/en/v2).
+
+L'intégralité du livre Pro Git, écrit par Scott Chacon et Ben Straub et publié par Apress, est disponible [ici](https://git-scm.com/book/fr/v2).
 
 # GitHub
 
