@@ -191,6 +191,8 @@ git help everyday
 
 **restore** : ⏪ Restore working tree files
 
+#### Git RM
+
 **rm**: ➖ Remove files from the working tree and from the index
 
 To untrack a single file that has already been added/initialized to your repository, i.e., stop tracking the file but not delete it from your system use: 
