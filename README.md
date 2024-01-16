@@ -193,15 +193,25 @@ git help everyday
 
 #### Git RM
 
-**rm**: ➖ Remove files from the working tree and from the index
+**git-rm**: ➖ Remove files from the working tree and from the index
 
 To untrack a single file that has already been added/initialized to your repository, i.e., stop tracking the file but not delete it from your system use: 
-> git rm --cached filename
+~~~ps1
+git rm --cached filename --dry-run
+git rm --cached filename
+~~~
 
-To untrack every file that is now in your .gitignore:
-- First commit any outstanding code changes, and then, run this command:
-> git rm -r --cached .
-> 
+To untrack every file that is now in your .gitignore, first commit any outstanding code changes, and then, run this command:
+~~~ps1
+<#
+-n --dry-run : Don’t actually remove any file(s). Instead, just show if they exist in the index and would otherwise be removed by the command.
+-r : Allow recursive removal when a leading directory name is given.
+--cached : Use this option to unstage and remove paths only from the index. Working tree files, whether modified or not, will be left alone.
+#>
+git rm -r --cached . --dry-run
+git rm -r --cached .
+~~~
+
 This removes any changed files from the index(staging area), then just run:
 > git add .
 
