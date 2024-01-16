@@ -385,13 +385,20 @@ Install GitHub Desktop (Optional)
 winget install --id GitHub.GitHubDesktop --exact --source winget
 ~~~
 
-## Adding a license to an existing repository
+## Adding a License to an Existing Repository
+
 1️⃣ On GitHub.com, navigate to the main page of the repository.
+
 2️⃣ Above the list of files, select the Add file  dropdown menu, then click  Create new file.
+
 3️⃣ In the file name field, type LICENSE or LICENSE.md (with all caps).
+
 4️⃣ Under the file name, click Choose a license template. 
+
 5️⃣ On the left side of the page, under "Add a license to your project," review the available licenses, then select a license from the list.
+
 6️⃣ Click Review and submit.
+
 7️⃣ Click Commit changes...
 
 Further reading [here](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/adding-a-license-to-a-repository)
