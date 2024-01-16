@@ -201,7 +201,13 @@ git rm --cached filename --dry-run
 git rm --cached filename
 ~~~
 
-To untrack every file that is now in your .gitignore, first commit any outstanding code changes, and then, run this command:
+To untrack every file that is now in your .gitignore, first commit any outstanding code changes, 
+~~~ps1
+git add .
+git commit -m ".gitignore is now working"
+~~~
+
+And then, run this command to remove all files from the working tree and from the index
 ~~~ps1
 <#
 -n --dry-run : Don’t actually remove any file(s). Instead, just show if they exist in the index and would otherwise be removed by the command.
